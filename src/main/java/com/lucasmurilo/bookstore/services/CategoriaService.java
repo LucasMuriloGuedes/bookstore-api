@@ -24,4 +24,8 @@ public class CategoriaService {
     public List<Categoria> findAll(){
         return repository.findAll();
     }
+
+    public Categoria insert(Categoria obj){
+        return repository.save(obj);
+    }
 }
