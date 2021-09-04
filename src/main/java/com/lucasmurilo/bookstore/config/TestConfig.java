@@ -13,7 +13,9 @@ import java.util.Arrays;
 
 @Configuration
 
-public class TestConfig implements CommandLineRunner {
+public class TestConfig {
+
+    /*
 
     @Autowired
     private CategoriaRepository categoriaRepository;
@@ -41,6 +43,9 @@ public class TestConfig implements CommandLineRunner {
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
         livrroRepository.saveAll(Arrays.asList(l1, l2, l3, l4, l5));
 
+        }
 
-    }
+        */
+
+
 }
