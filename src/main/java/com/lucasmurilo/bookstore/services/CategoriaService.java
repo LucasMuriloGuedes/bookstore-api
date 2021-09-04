@@ -1,5 +1,6 @@
 package com.lucasmurilo.bookstore.services;
 
+import com.lucasmurilo.bookstore.DTO.CategoriaDTO;
 import com.lucasmurilo.bookstore.domain.Categoria;
 import com.lucasmurilo.bookstore.repositories.CategoriaRepository;
 import com.lucasmurilo.bookstore.services.exception.ObjectNotFoundException;
@@ -26,6 +27,13 @@ public class CategoriaService {
     }
 
     public Categoria insert(Categoria obj){
+        return repository.save(obj);
+    }
+
+    public Categoria update(CategoriaDTO objDTO, Integer id) {
+        Categoria obj = findById(id);
+        obj.setNome(objDTO.getNome());
+        obj.setDescricao(objDTO.getDescricao());
         return repository.save(obj);
     }
 }
