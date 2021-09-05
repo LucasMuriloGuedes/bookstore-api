@@ -1,5 +1,6 @@
 package com.lucasmurilo.bookstore.services;
 
+import com.lucasmurilo.bookstore.domain.Categoria;
 import com.lucasmurilo.bookstore.domain.Livro;
 import com.lucasmurilo.bookstore.repositories.CategoriaRepository;
 import com.lucasmurilo.bookstore.repositories.LivrroRepository;
@@ -41,5 +42,12 @@ public class LivroService {
         newObj.setTitulo(obj.getTitulo());
         newObj.setNome_autor(obj.getNome_autor());
         newObj.setTexto(obj.getTexto());
+    }
+
+    public Livro insert(Integer id, Livro livro) {
+        livro.setId(null);
+        Categoria cat = categoriaService.findById(id);
+        livro.setCategoria(cat);
+        return repository.save(livro);
     }
 }
