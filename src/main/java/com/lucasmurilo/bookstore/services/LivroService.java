@@ -50,4 +50,9 @@ public class LivroService {
         livro.setCategoria(cat);
         return repository.save(livro);
     }
+
+    public void delete(Integer id) {
+        findById(id);
+        repository.deleteById(id);
+    }
 }
