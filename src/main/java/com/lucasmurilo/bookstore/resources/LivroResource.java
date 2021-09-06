@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,7 +35,7 @@ public class LivroResource {
     }
 
     @PutMapping(value = "{id}")
-    public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro obj){
+    public ResponseEntity<Livro> update(@Valid @PathVariable Integer id, @RequestBody Livro obj){
         Livro newObj = service.update(id, obj);
         return ResponseEntity.ok().body(newObj);
     }
@@ -46,7 +47,7 @@ public class LivroResource {
     }
 
     @PostMapping
-    public ResponseEntity<Livro> insert(@RequestParam(value = "categoria", defaultValue = "0") Integer id_cat,
+    public ResponseEntity<Livro> insert(@Valid  @RequestParam(value = "categoria", defaultValue = "0") Integer id_cat,
                                         @RequestBody Livro obj){
         Livro newObjeto = service.insert(id_cat, obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObjeto.getId()).toUri();

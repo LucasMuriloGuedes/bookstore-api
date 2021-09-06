@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,14 +36,14 @@ public class CategoriaResources {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody Categoria obj){
+    public ResponseEntity<Void> create(@Valid @RequestBody Categoria obj){
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CategoriaDTO> update(@RequestBody CategoriaDTO objDTO, @PathVariable Integer id){
+    public ResponseEntity<CategoriaDTO> update(@Valid @RequestBody CategoriaDTO objDTO, @PathVariable Integer id){
         Categoria obj = service.update(objDTO, id);
         return ResponseEntity.ok().body(new CategoriaDTO(obj));
 
